@@ -40,6 +40,8 @@ To get a list of valid shapes and countries run the following
 
 ## Changing Image Scale
 
+> Note: When scaling higher than 100 images may start to become blurry
+
 You can change the scale percentage of output images (even when using the base-64 output types) using the following flag
 ```
 -scale=xx # replace xx with a number greater than 0
