@@ -11,6 +11,7 @@ This utility will download country flags in one or many different shapes. The ou
 Run the following command to build the binary.
 
 ```sh
+$ go get -u "github.com/nfnt/resize"
 $ go build gen-flags.go
 ```
 
