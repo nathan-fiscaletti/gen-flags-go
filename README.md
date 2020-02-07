@@ -6,7 +6,7 @@ This utility will download country flags in one or many different shapes. The ou
 
 ## Building
 
-> You must have Go installed in order to build this utility.
+> You must have [Go](https://golang.org/) installed in order to build this utility.
 
 Run the following command to build the binary.
 
@@ -16,9 +16,7 @@ $ go build gen-flags.go
 
 ## Basic Execution
 
-The following command will download all images for all countries of all shapes and place them in the `flags` directory. 
-
-> You must create the flags directory before running this.
+The following command will download all images for all countries of all shapes and place them in the `flags` directory. The directory will be automatically created if it does not exist.
 
 ```sh
 ./gen-flags -download -output-dir=./flags/
