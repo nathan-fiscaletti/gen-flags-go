@@ -38,6 +38,13 @@ To get a list of valid shapes and countries run the following
 ./gen-flags -list-countries # for list of valid countries
 ```
 
+## Changing Image Scale
+
+You can change the scale percentage of output images (even when using the base-64 output types) using the following flag
+```
+-scale=xx # replace xx with a number greater than 0
+```
+
 ## Output Types
 
 There are several output types you can select. Decide which one you want using the `-output-type` command line argument.

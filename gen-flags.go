@@ -3,12 +3,18 @@ package main
 import (
     "encoding/base64"
     "encoding/json"
+    "bytes"
     "flag"
     "fmt"
     "io/ioutil"
     "net/http"
     "os"
     "strings"
+
+    img "image"
+    png "image/png"
+
+    "github.com/nfnt/resize"
 )
 
 var s_shapes = [...]string{
@@ -114,18 +120,39 @@ func download(src string) ([]byte, error) {
     return ioutil.ReadAll(resp.Body)
 }
 
-func download_all(countries *[]string, shapes *[]string, output_dir string, output_type string) {
+func download_all(countries *[]string, shapes *[]string, output_dir string, output_type string, resize_percentage int) {
     images := get_image_list(countries, shapes)
 
     if output_type == "png" {
         _ = os.Mkdir(output_dir, 0700)
         for _,image := range images {
             out_path := output_dir + "/" + image.Country + "-" + image.Shape + "." + output_type
-            fmt.Printf("Downloading %s ... ", out_path)
+            fmt.Printf("Downloading and encoding %s ... ", out_path)
             data, err := download(image.URL)
             if err != nil {
                 fmt.Printf("[%s: %v]\n", "FAILED", err)
                 continue;
+            }
+
+            if resize_percentage != 100 {
+                decoded, _, err := img.Decode(bytes.NewReader(data))
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                final_width := uint((resize_percentage * decoded.Bounds().Max.X) / 100)
+                final_height := uint((resize_percentage * decoded.Bounds().Max.Y) / 100)
+
+                buf := new(bytes.Buffer)
+                newImage := resize.Resize(final_width, final_height, decoded, resize.Lanczos3)
+                err = png.Encode(buf, newImage)
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                data = buf.Bytes()
             }
 
             err = ioutil.WriteFile(out_path, data, 0700)
@@ -147,6 +174,27 @@ func download_all(countries *[]string, shapes *[]string, output_dir string, outp
                 continue;
             }
 
+            if resize_percentage != 100 {
+                decoded, _, err := img.Decode(bytes.NewReader(data))
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                final_width := uint((resize_percentage * decoded.Bounds().Max.X) / 100)
+                final_height := uint((resize_percentage * decoded.Bounds().Max.Y) / 100)
+
+                buf := new(bytes.Buffer)
+                newImage := resize.Resize(final_width, final_height, decoded, resize.Lanczos3)
+                err = png.Encode(buf, newImage)
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                data = buf.Bytes()
+            }
+
             err = ioutil.WriteFile(out_path, []byte(base64.StdEncoding.EncodeToString(data)), 0700)
             if err != nil {
                 fmt.Printf("[%s: %v]\n", "FAILED", err)
@@ -164,6 +212,27 @@ func download_all(countries *[]string, shapes *[]string, output_dir string, outp
             if err != nil {
                 fmt.Printf("[%s: %v]\n", "FAILED", err)
                 continue;
+            }
+
+            if resize_percentage != 100 {
+                decoded, _, err := img.Decode(bytes.NewReader(data))
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                final_width := uint((resize_percentage * decoded.Bounds().Max.X) / 100)
+                final_height := uint((resize_percentage * decoded.Bounds().Max.Y) / 100)
+
+                buf := new(bytes.Buffer)
+                newImage := resize.Resize(final_width, final_height, decoded, resize.Lanczos3)
+                err = png.Encode(buf, newImage)
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                data = buf.Bytes()
             }
 
             if jsonResult[image.ISO3166.NU] == nil {
@@ -204,6 +273,27 @@ func download_all(countries *[]string, shapes *[]string, output_dir string, outp
                 continue;
             }
 
+            if resize_percentage != 100 {
+                decoded, _, err := img.Decode(bytes.NewReader(data))
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                final_width := uint((resize_percentage * decoded.Bounds().Max.X) / 100)
+                final_height := uint((resize_percentage * decoded.Bounds().Max.Y) / 100)
+
+                buf := new(bytes.Buffer)
+                newImage := resize.Resize(final_width, final_height, decoded, resize.Lanczos3)
+                err = png.Encode(buf, newImage)
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                data = buf.Bytes()
+            }
+
             if jsonResult[image.ISO3166.A2] == nil {
                 jsonResult[image.ISO3166.A2] = map[string]string{}
             }
@@ -241,6 +331,27 @@ func download_all(countries *[]string, shapes *[]string, output_dir string, outp
             if err != nil {
                 fmt.Printf("[%s: %v]\n", "FAILED", err)
                 continue;
+            }
+
+            if resize_percentage != 100 {
+                decoded, _, err := img.Decode(bytes.NewReader(data))
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                final_width := uint((resize_percentage * decoded.Bounds().Max.X) / 100)
+                final_height := uint((resize_percentage * decoded.Bounds().Max.Y) / 100)
+
+                buf := new(bytes.Buffer)
+                newImage := resize.Resize(final_width, final_height, decoded, resize.Lanczos3)
+                err = png.Encode(buf, newImage)
+                if err != nil {
+                    fmt.Printf("[%s: %v]\n", "FAILED", err)
+                    continue;
+                }
+
+                data = buf.Bytes()
             }
 
             if jsonResult[image.ISO3166.A3] == nil {
@@ -293,6 +404,7 @@ func main() {
     output_type := flag.String("output-type", "png", "the output type, valid values are 'png', 'b64', 'b64-iso3166-numeric-json-file', 'b64-iso3166-alpha2-json-file', 'b64-iso3166-alpha3-json-file'")
     filterCountries_str := flag.String("filter-countries", "", "the list of countries to filter, comma separated")
     filterShapes_str := flag.String("filter-shapes", "", "the list of shapes to filter, comma separated")
+    resize_percentage := flag.Int("scale", 100, "the scale of resulting images")
 
     flag.Parse()
 
@@ -316,6 +428,10 @@ func main() {
     }
 
     if *doDownload {
-        download_all(filter_countries, filter_shapes, *output, *output_type)
+        if *resize_percentage < 1 {
+            fmt.Printf("error: invalid scale: %v, must be greater than 0\n", resize_percentage)
+            os.Exit(1)
+        }
+        download_all(filter_countries, filter_shapes, *output, *output_type, *resize_percentage)
     }
 }
