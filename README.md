@@ -78,7 +78,7 @@ When using the `iso3166` output types, the result will be a json file storing th
 }
 ```
 
-## Output File Name FOrmat
+## Output File Name Format
 
 You can change the file name format when using the `png` and `b64` output types using the `-file-name-format` command line argument.
 
