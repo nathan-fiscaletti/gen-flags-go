@@ -1,3 +1,5 @@
+![US](./images/US-circle.png) ![GB](./images/GB-circle.png) ![MX](./images/GB-circle.png) ![DE](./images/GB-circle.png) ![IT](./images/GB-circle.png)
+
 # gen-flags-go
 
 > This utility scrapes [countryflags.com](https://www.countryflags.com/) for the flag images it uses
