@@ -1,4 +1,4 @@
-![US](./images/US-circle.png) ![GB](./images/GB-circle.png) ![MX](./images/GB-circle.png) ![DE](./images/GB-circle.png) ![IT](./images/GB-circle.png)
+![US](./images/US-circle.png) ![GB](./images/GB-circle.png) ![MX](./images/MX-circle.png) ![DE](./images/DE-circle.png) ![IT](./images/IT-circle.png)
 
 # gen-flags-go
 
