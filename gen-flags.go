@@ -278,7 +278,7 @@ func get_image_list(countries_filter *[]string, shapes_filter *[]string) []Downl
 // Process all downloads into their respective resulting files, only download flags for countries within countries and 
 // shapes within shapes. Place resulting files in output_dir. If output_type is png or b64, name the files using 
 // file_format format specifier.
-func download_all(countries *[]string, shapes *[]string, output_dir string, output_type string, file_format string) {
+func download_flags(countries *[]string, shapes *[]string, output_dir string, output_type string, file_format string) {
     images := get_image_list(countries, shapes)
 
     if output_type == "png" {
@@ -445,7 +445,7 @@ func main() {
     listCountries := flag.Bool("list-countries", false, "list available countries")
     listShapes := flag.Bool("list-shapes", false, "list available shapes")
     doDownload := flag.Bool("download", false, "download all images within the supplied filter")
-    output := flag.String("output-dir", "./", "the directory in which to store the output images")
+    output_dir := flag.String("output-dir", "./", "the directory in which to store the output images")
     output_type := flag.String("output-type", "png", "the output type, valid values are 'png', 'b64', 'b64-iso3166-numeric-json-file', 'b64-iso3166-alpha2-json-file', 'b64-iso3166-alpha3-json-file'")
     filterCountries_str := flag.String("filter-countries", "", "the list of countries to filter, comma separated")
     filterShapes_str := flag.String("filter-shapes", "", "the list of shapes to filter, comma separated. If you want to scale it, add the scale in [] at the end of the shape name. i.e. square[125%]")
@@ -473,6 +473,6 @@ func main() {
     }
 
     if *doDownload {
-        download_all(filter_countries, filter_shapes, *output, *output_type, *file_format)
+        download_flags(filter_countries, filter_shapes, *output_dir, *output_type, *file_format)
     }
 }
