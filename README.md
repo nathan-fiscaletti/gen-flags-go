@@ -28,8 +28,8 @@ The following command will download all images for all countries of all shapes a
 You can filter which countries and shapes are downloaded using the following command line parameters
 
 ```sh
--filter-countries=country1,country2
--filter-shapes=flag-800,round-250
+-filter-countries=united-states-of-america,finland
+-filter-shapes=rectangle,circle
 ```
 
 To get a list of valid shapes and countries run the following
@@ -41,11 +41,20 @@ To get a list of valid shapes and countries run the following
 
 ## Changing Image Scale
 
+You can change the scale of each shape you download by formatting the shape name as `shape[scale%]`
+
+```sh
+-filter-shapes=circle[150%],square[50%]
+```
+
 > Note: When scaling higher than 100 images may start to become blurry
 
-You can change the scale percentage of output images (even when using the base-64 output types) using the following flag
-```
--scale=xx # replace xx with a number greater than 0
+## Output Location
+
+You can specify an ouput directory using the `-output-dir` command line agrument.
+
+```sh
+-output-dir=./flags/
 ```
 
 ## Output Types
@@ -68,3 +77,22 @@ When using the `iso3166` output types, the result will be a json file storing th
     }
 }
 ```
+
+## Output File Name FOrmat
+
+You can change the file name format when using the `png` and `b64` output types using the `-file-name-format` command line argument.
+
+```sh
+-file-name-format="{iso-alpha3}-{shape}"
+```
+
+The available file name format specifiers are:
+
+- `{iso-alpha2}`
+- `{iso-alpha3}`
+- `{iso-numeric}`
+- `{country}`
+- `{shape}`
+- `{scale}`
+
+> Note: Do not add a file extension to the file-name-format. This will be done automatically.
