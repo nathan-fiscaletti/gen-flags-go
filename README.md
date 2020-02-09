@@ -103,13 +103,13 @@ The available file name format specifiers are:
 
 |Shape|Preview|
 |---|---|
-|Rectangle|![rectangle][./images/US-rectangle.png]|
-|Square|![square][./images/US-square.png]|
-|Circle|![circle][./images/US-circle.png]|
-|Wave|![wave][./images/US-wave.png]|
-|Waving|![waving][./images/US-waving.png]|
-|Button Square|![button-square][./images/US-button-square.png]|
-|Button Round|![button-round][./images/US-button-round.png]|
-|3D|![3d][./images/US-3d.png]|
-|3D Round|![3d-round][./images/US-3d-round.png]|
-|Heart 3D|![heart-3d][./images/US-heart-3d.png]|
+|Rectangle|![rectangle](./images/US-rectangle.png)|
+|Square|![square](./images/US-square.png)|
+|Circle|![circle](./images/US-circle.png)|
+|Wave|![wave](./images/US-wave.png)|
+|Waving|![waving](./images/US-waving.png)|
+|Button Square|![button-square](./images/US-button-square.png)|
+|Button Round|![button-round](./images/US-button-round.png)|
+|3D|![3d](./images/US-3d.png)|
+|3D Round|![3d-round](./images/US-3d-round.png)|
+|Heart 3D|![heart-3d](./images/US-heart-3d.png)|
