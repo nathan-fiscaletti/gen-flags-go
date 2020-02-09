@@ -101,7 +101,7 @@ The available file name format specifiers are:
 
 > These previews are each at 100% scale, hopefully this helps you when choosing a scale while downloading.
 
-|Shape|100% Scale DimensionsPreview|
+|Shape|100% Scale Dimensions|Preview|
 |---|---|---|
 |Rectangle|`800w x 421h`|![rectangle](./images/US-rectangle.png)|
 |Square|`250w x 250h`|![square](./images/US-square.png)|
