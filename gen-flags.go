@@ -211,7 +211,7 @@ func (image DownloadTarget) download() ([]byte, error) {
         final_height := uint((image.Shape.Scale * decoded.Bounds().Max.Y) / 100)
 
         buf := new(bytes.Buffer)
-        newImage := resize.Resize(final_width, final_height, decoded, resize.Lanczos3)
+        newImage := resize.Resize(final_width, final_height, decoded, resize.Bilinear)
         err = png.Encode(buf, newImage)
         if err != nil {
             return []byte{}, err
