@@ -1,5 +1,3 @@
-![US](./images/US-circle.png) ![GB](./images/GB-circle.png) ![MX](./images/MX-circle.png) ![DE](./images/DE-circle.png) ![IT](./images/IT-circle.png)
-
 # gen-flags-go
 
 > This utility scrapes [countryflags.com](https://www.countryflags.com/) for the flag images it uses
@@ -101,15 +99,17 @@ The available file name format specifiers are:
 
 ## Shape Previews
 
-|Shape|Preview|
-|---|---|
-|Rectangle|![rectangle](./images/US-rectangle.png)|
-|Square|![square](./images/US-square.png)|
-|Circle|![circle](./images/US-circle.png)|
-|Wave|![wave](./images/US-wave.png)|
-|Waving|![waving](./images/US-waving.png)|
-|Button Square|![button-square](./images/US-button-square.png)|
-|Button Round|![button-round](./images/US-button-round.png)|
-|3D|![3d](./images/US-3d.png)|
-|3D Round|![3d-round](./images/US-3d-round.png)|
-|Heart 3D|![heart-3d](./images/US-heart-3d.png)|
+> These previews are each at 100% scale, hopefully this helps you when choosing a scale while downloading.
+
+|Shape|100% Scale DimensionsPreview|
+|---|---|---|
+|Rectangle|`800w x 421h`|![rectangle](./images/US-rectangle.png)|
+|Square|`250w x 250h`|![square](./images/US-square.png)|
+|Circle|`250w x 250h`|![circle](./images/US-circle.png)|
+|Wave|`250w x 132h`|![wave](./images/US-wave.png)|
+|Waving|`250w x 167h`|![waving](./images/US-waving.png)|
+|Button Square|`250w x 250h`|![button-square](./images/US-button-square.png)|
+|Button Round|`250w x 250h`|![button-round](./images/US-button-round.png)|
+|3D|`250w x 167h`|![3d](./images/US-3d.png)|
+|3D Round|`250w x 250h`|![3d-round](./images/US-3d-round.png)|
+|Heart 3D|`250w x 227h`|![heart-3d](./images/US-heart-3d.png)|
