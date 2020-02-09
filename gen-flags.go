@@ -20,7 +20,7 @@ import (
     "github.com/nfnt/resize"
 )
 
-var s_shapes = [...]string{
+var s_shapes []string = []string{
     "flag-800",
     "flag-square-250",
     "flag-round-250",
@@ -33,7 +33,7 @@ var s_shapes = [...]string{
     "flag-heart-3d-250",
 }
 
-var shape_names = [...]string {
+var shape_names []string = []string {
     "rectangle",
     "square",
     "circle",
@@ -46,7 +46,7 @@ var shape_names = [...]string {
     "heart-3d",
 }
 
-var s_countries = [...]string{
+var s_countries []string = []string{
     "argentina", "antigua-and-barbuda", "austria", "australia", "armenia", "angola", "afghanistan", "azerbaijan", 
     "andorra", "algeria", "albania", "brunei", "burundi", "burkina-faso", "bulgaria", "brazil", "benin", "botswana", 
     "bosnia-and-herzegovina", "bolivia", "belize", "bahrain", "belarus", "belgium", "barbados", "bangladesh", "bhutan", 
@@ -237,8 +237,15 @@ func list_from_csv(csv string) *[]string {
 func get_image_list(countries_filter *[]string, shapes_filter *[]string) []DownloadTarget {
     results := []DownloadTarget{}
 
+    var shapes_to_download []string
+    if shapes_filter == nil {
+        shapes_to_download = shape_names
+    } else {
+        shapes_to_download = *shapes_filter
+    }
+
     shapes := []Shape{}
-    for _,shape := range *shapes_filter {
+    for _,shape := range shapes_to_download {
         scale := get_scale_for_shape(shape)
         name := get_name_for_shape(shape)
         urlName := get_real_shape_name(name)
